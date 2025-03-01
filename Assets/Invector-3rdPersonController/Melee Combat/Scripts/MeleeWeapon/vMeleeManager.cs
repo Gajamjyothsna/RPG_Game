@@ -55,11 +55,13 @@ namespace Invector.vMelee
                 member.attackObject.damage.damageValue = defaultDamage.damageValue;
                 if (member.bodyPart == HumanBodyBones.LeftLowerArm.ToString())
                 {
+                    Debug.Log("LeftLowerArm is coming" + member.bodyPart.ToString());
                     var weapon = member.attackObject.GetComponentInChildren<vMeleeWeapon>(true);
                     leftWeapon = weapon;
                 }
                 if (member.bodyPart == HumanBodyBones.RightLowerArm.ToString())
                 {
+                    Debug.Log("RightLowerArm is coming" + member.bodyPart.ToString());
                     var weapon = member.attackObject.GetComponentInChildren<vMeleeWeapon>(true);
                     rightWeapon = weapon;
                 }
