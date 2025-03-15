@@ -26,7 +26,6 @@ namespace Invector.vItemManager
         public bool updatedTimeScale;
         public bool dontDestroyOnLoad = true;
         public List<ChangeEquipmentControl> changeEquipmentControllers;
-        [HideInInspector]
         public List<vInventoryWindow> windows = new List<vInventoryWindow>();
         [HideInInspector]
         public vInventoryWindow currentWindow;

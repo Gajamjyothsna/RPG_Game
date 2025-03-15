@@ -63,7 +63,7 @@ namespace Invector.vItemManager
         {
             if (instance == null)
             {
-                inventory = FindObjectOfType<vInventory>();
+                //inventory = FindObjectOfType<vInventory>();
                 instance = this;
 
                 var melee = GetComponent<vMeleeCombatInput>();
@@ -71,7 +71,7 @@ namespace Invector.vItemManager
                 if (!inventory && inventoryPrefab)
                     inventory = Instantiate(inventoryPrefab);
 
-                if (!inventory) Debug.LogError("No vInventory assigned!");
+                //if (!inventory) Debug.LogError("No vInventory assigned!");
 
                 if (inventory)
                 {

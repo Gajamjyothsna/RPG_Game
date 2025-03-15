@@ -57,31 +57,31 @@ namespace Invector.vCharacterController
             }
         }
 
-        public Canvas aimCanvas
-        {
-            get
-            {
-                if (_aimCanvas) return _aimCanvas;
-                _aimCanvas = vHUDController.instance.GetComponentInParent<Canvas>();
-                if (_aimCanvas == null) FindObjectOfType<Canvas>();
-                return _aimCanvas;
-            }
-        }
+        //public Canvas aimCanvas
+        //{
+        //    get
+        //    {
+        //        if (_aimCanvas) return _aimCanvas;
+        //        _aimCanvas = vHUDController.instance.GetComponentInParent<Canvas>();
+        //        if (_aimCanvas == null) FindObjectOfType<Canvas>();
+        //        return _aimCanvas;
+        //    }
+        //}
 
-        public RectTransform aimImage
-        {
-            get
-            {
-                if (_aimImage) return _aimImage;
-                if (aimCanvas)
-                {
-                    _aimImage = Instantiate(aimImagePrefab, Vector2.zero, Quaternion.identity) as RectTransform;
-                    _aimImage.SetParent(aimCanvas.transform);
-                    return _aimImage;
-                }
-                return null;
-            }
-        }
+        //public RectTransform aimImage
+        //{
+        //    get
+        //    {
+        //        if (_aimImage) return _aimImage;
+        //        if (aimCanvas)
+        //        {
+        //            _aimImage = Instantiate(aimImagePrefab, Vector2.zero, Quaternion.identity) as RectTransform;
+        //            _aimImage.SetParent(aimCanvas.transform);
+        //            return _aimImage;
+        //        }
+        //        return null;
+        //    }
+        //}
 
         protected virtual void UpdateLockOn(vThirdPersonInput tpInput)
         {
@@ -89,7 +89,7 @@ namespace Invector.vCharacterController
             LockOnInput();
             SwitchTargetsInput();
             CheckForCharacterAlive();
-            UpdateAimImage();
+            //UpdateAimImage();
         }
 
         protected virtual void LockOnInput()
@@ -167,24 +167,24 @@ namespace Invector.vCharacterController
             }
         }
 
-        protected virtual void UpdateAimImage()
-        {
-            if (!aimCanvas || !aimImage) return;
-            if (hideSprite)
-            {
-                aimImage.sizeDelta = aimImageSize;
-                if (currentTarget && !aimImage.transform.gameObject.activeSelf && isCharacterAlive())
-                    aimImage.transform.gameObject.SetActive(true);
-                else if (!currentTarget && aimImage.transform.gameObject.activeSelf)
-                    aimImage.transform.gameObject.SetActive(false);
-                else if (_aimImage.transform.gameObject.activeSelf && !isCharacterAlive())
-                    aimImage.transform.gameObject.SetActive(false);
-            }
-            if (currentTarget && aimImage && aimCanvas)
-                aimImage.anchoredPosition = currentTarget.GetScreenPointOffBoundsCenter(aimCanvas, Camera.main, spriteHeight);
-            else if (aimCanvas)
-                aimImage.anchoredPosition = Vector2.zero;
-        }
+        //protected virtual void UpdateAimImage()
+        //{
+        //    if (!aimCanvas || !aimImage) return;
+        //    if (hideSprite)
+        //    {
+        //        aimImage.sizeDelta = aimImageSize;
+        //        if (currentTarget && !aimImage.transform.gameObject.activeSelf && isCharacterAlive())
+        //            aimImage.transform.gameObject.SetActive(true);
+        //        else if (!currentTarget && aimImage.transform.gameObject.activeSelf)
+        //            aimImage.transform.gameObject.SetActive(false);
+        //        else if (_aimImage.transform.gameObject.activeSelf && !isCharacterAlive())
+        //            aimImage.transform.gameObject.SetActive(false);
+        //    }
+        //    if (currentTarget && aimImage && aimCanvas)
+        //        aimImage.anchoredPosition = currentTarget.GetScreenPointOffBoundsCenter(aimCanvas, Camera.main, spriteHeight);
+        //    else if (aimCanvas)
+        //        aimImage.anchoredPosition = Vector2.zero;
+        //}
 
         public virtual void StopLockOn()
         {
