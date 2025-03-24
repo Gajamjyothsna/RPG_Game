@@ -26,6 +26,9 @@ namespace Invector
         private GameObject oldPlayer;
         public bool displayInfoInFadeText = true;
 
+        public Transform riderSpawnPoint;
+        public GameObject riderSpawnObject;
+
         void Start()
         {
             if (instance == null)
@@ -182,6 +185,16 @@ namespace Invector
             if (rigidbody != null) Destroy(rigidbody);
             var animator = target.GetComponent<Animator>();
             if (animator != null) Destroy(animator);
+        }
+
+        public void SpawnRider()
+        {
+            if (currentPlayer.activeInHierarchy)
+            {
+                Destroy(currentPlayer);
+                GameObject rider = Instantiate(riderSpawnObject, riderSpawnPoint);
+            }
+
         }
     }
 }
