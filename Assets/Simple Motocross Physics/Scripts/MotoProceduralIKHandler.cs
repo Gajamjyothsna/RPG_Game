@@ -15,7 +15,7 @@ namespace SMPScripts
 
     public class MotoProceduralIKHandler : MonoBehaviour
     {
-        MotoController motoController;
+        public MotoController motoController;
         MotoAnimController motoAnimController;
         GameObject hipIKTarget, chestIKTarget, headIKTarget, leftFootIKTarget, rightFootIKTarget, rightHandIKTarget;
         public Vector2 chestIKRange, hipIKRange, headIKRange;
@@ -37,7 +37,6 @@ namespace SMPScripts
 
         void Start()
         {
-            motoController = transform.root.GetComponent<MotoController>();
             motoAnimController = transform.GetComponent<MotoAnimController>();
             hipIKTarget = motoAnimController.hipIK.GetComponent<MultiParentConstraint>().data.sourceObjects[0].transform.gameObject;
             chestIKTarget = motoAnimController.chestIK.GetComponent<TwoBoneIKConstraint>().data.target.gameObject;
@@ -69,6 +68,8 @@ namespace SMPScripts
         void Update()
         {
             //Weights
+            Debug.Log("PickUpSpeed " + motoController.pickUpSpeed);
+            Debug.Log("chestIKRange x " + chestIKRange.x + " and chestIKRange y" + chestIKRange.y);
             chestRange.weight = Mathf.Clamp(motoController.pickUpSpeed, chestIKRange.x, chestIKRange.y);
             hipRange.weight = Mathf.Clamp(motoController.pickUpSpeed, hipIKRange.x, hipIKRange.y);
             headRange.weight = Mathf.Clamp(motoAnimController.speed, headIKRange.x, headIKRange.y);

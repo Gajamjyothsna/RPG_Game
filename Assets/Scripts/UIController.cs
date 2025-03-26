@@ -1,3 +1,4 @@
+using Invector;
 using Invector.vCharacterController;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ public class UIController : MonoBehaviour
 
     public void SwitchToRacing()
     {
-
+        Debug.Log("SwitchToRacing");
+        vGameController.instance.SpawnRider();
     }
 }

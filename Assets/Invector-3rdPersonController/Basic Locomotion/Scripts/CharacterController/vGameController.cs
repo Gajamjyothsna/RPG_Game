@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Invector
 {
+    using SMPScripts;
     using vCharacterController;
     public class vGameController : MonoBehaviour
     {
@@ -28,6 +29,7 @@ namespace Invector
 
         public Transform riderSpawnPoint;
         public GameObject riderSpawnObject;
+        public GameObject riderCamera;
 
         void Start()
         {
@@ -186,15 +188,25 @@ namespace Invector
             var animator = target.GetComponent<Animator>();
             if (animator != null) Destroy(animator);
         }
-
+        GameObject rider;
+        bool isRider = false;
         public void SpawnRider()
         {
-            if (currentPlayer.activeInHierarchy)
+            if (currentPlayer.activeInHierarchy && !isRider)
             {
-                Destroy(currentPlayer);
-                GameObject rider = Instantiate(riderSpawnObject, riderSpawnPoint);
+                currentPlayer.SetActive(false); 
+                rider = Instantiate(riderSpawnObject, riderSpawnPoint);
+                riderCamera.SetActive(true);
+                riderCamera.GetComponent<CameraFollower>().target = rider.transform;
             }
-
+            else if(isRider)
+            {
+                if(rider !=null) Destroy(rider);
+                currentPlayer.SetActive(true);
+                riderCamera.SetActive(false);
+                riderCamera.GetComponent<CameraFollower>().target = null;
+            }
+            isRider = !isRider;
         }
     }
 }
